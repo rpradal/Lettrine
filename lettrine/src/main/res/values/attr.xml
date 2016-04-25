@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LettrineTextView">
+        <attr name="lettrine_textSize" format="dimension" />
+        <attr name="lettrine_text" format="string" />
+        <attr name="lettrine_textColor" format="reference" />
+        <attr name="lettrine_font" format="string" />
+        <attr name="lettrine_lettrineSize" format="integer" />
+    </declare-styleable>
+</resources>

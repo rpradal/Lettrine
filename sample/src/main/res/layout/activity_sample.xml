@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.lemonde.lettrine.sample.SampleActivity">
+
+        <com.lemonde.lettrine.LettrineTextView
+            android:id="@+id/simpleTwoLettrineTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:lettrine_lettrineSize="2"
+            app:lettrine_textSize="@dimen/text_size_big" />
+
+        <com.lemonde.lettrine.LettrineTextView
+            android:id="@+id/simpleThreeLettrineTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:lettrine_lettrineSize="3"
+            app:lettrine_textSize="@dimen/text_size_medium" />
+
+        <com.lemonde.lettrine.LettrineTextView
+            android:id="@+id/fontLettrineTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:lettrine_font="font/otf/Cinzel-Regular.otf"
+            app:lettrine_textSize="@dimen/text_size_small" />
+
+        <com.lemonde.lettrine.LettrineTextView
+            android:id="@+id/htmlLettrineTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:lettrine_textSize="@dimen/text_size_medium" />
+
+        <com.lemonde.lettrine.LettrineTextView
+            android:id="@+id/inlineLettrineTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:lettrine_text="@string/lorem_ipsum"
+            app:lettrine_textSize="14sp" />
+    </LinearLayout>
+</ScrollView>
+
