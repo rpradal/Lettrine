@@ -1,10 +1,8 @@
 package com.lemonde.lettrine
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Rect
-import android.graphics.Typeface
+import android.graphics.*
+import android.support.annotation.ColorInt
 import android.text.Html
 import android.text.Layout
 import android.text.SpannableString
@@ -15,6 +13,7 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import org.jetbrains.anko.textColor
 import org.jetbrains.anko.textView
 
 /**
@@ -30,6 +29,7 @@ class LettrineTextView : FrameLayout {
 
     companion object {
         private val LETTRINE_LINES_SIZE_EQUIVALENT = 2
+        private val DEFAULT_TEXT_COLOR = Color.BLACK
         private val DEFAULT_TEXT_SIZE_SP = 14
     }
 
@@ -56,6 +56,8 @@ class LettrineTextView : FrameLayout {
     private var lettrineLinesSizeEquivalent = LETTRINE_LINES_SIZE_EQUIVALENT
     private var bodyTextSize = DEFAULT_TEXT_SIZE_SP
     private var fontPath: String? = null
+    @ColorInt private var textColor: Int = DEFAULT_TEXT_COLOR
+
 
     // ---------------------------------
     // INTERNAL VIEWS
@@ -96,6 +98,7 @@ class LettrineTextView : FrameLayout {
     // PRIVATE METHODS
     // ---------------------------------
 
+
     private fun initView(attrs: AttributeSet?) {
         var bodyText: String = ""
 
@@ -107,8 +110,12 @@ class LettrineTextView : FrameLayout {
             lettrineLinesSizeEquivalent = typedArray.getInteger(R.styleable.LettrineTextView_lettrine_lettrineSize, LETTRINE_LINES_SIZE_EQUIVALENT)
             bodyTextSize = typedArray.getDimensionPixelSize(R.styleable.LettrineTextView_lettrine_textSize, DEFAULT_TEXT_SIZE_SP)
             fontPath = typedArray.getString(R.styleable.LettrineTextView_lettrine_font)
+            textColor = typedArray.getColor(R.styleable.LettrineTextView_lettrine_textColor, DEFAULT_TEXT_COLOR)
             bodyText = typedArray.getString(R.styleable.LettrineTextView_lettrine_text) ?: ""
         }
+
+        bodyTextView.textColor = textColor
+        lettrineTextView.textColor = textColor
 
         bodyTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, bodyTextSize.toFloat())
         val lettrineTextSize = (bodyTextView.lineHeight + bodyTextView.lineHeight - bodyTextSize) * lettrineLinesSizeEquivalent

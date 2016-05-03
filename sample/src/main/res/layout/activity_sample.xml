@@ -53,6 +53,15 @@
             android:layout_marginTop="8dp"
             app:lettrine_text="@string/lorem_ipsum"
             app:lettrine_textSize="14sp" />
+
+        <com.lemonde.lettrine.LettrineTextView
+            android:id="@+id/coloredLettrineTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:lettrine_textColor="@android:color/holo_red_dark"
+            app:lettrine_text="@string/lorem_ipsum"
+            app:lettrine_textSize="14sp" />
     </LinearLayout>
 </ScrollView>
 
