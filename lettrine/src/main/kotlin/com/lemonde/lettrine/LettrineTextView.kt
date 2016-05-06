@@ -56,6 +56,7 @@ class LettrineTextView : FrameLayout {
     private var lettrineLinesSizeEquivalent = LETTRINE_LINES_SIZE_EQUIVALENT
     private var bodyTextSize = DEFAULT_TEXT_SIZE_SP
     private var fontPath: String? = null
+    private var bodyText: String? = null
     @ColorInt private var textColor: Int = DEFAULT_TEXT_COLOR
 
 
@@ -72,9 +73,80 @@ class LettrineTextView : FrameLayout {
     // PUBLIC METHODS
     // ---------------------------------
 
-    fun setBodyText(articleBody: String) {
-        if (!TextUtils.isEmpty(articleBody)) {
-            val lettrineData = LettrineHelper.parseLettrineInformation(articleBody)
+    fun setBodyText(newBodyText: String) {
+        bodyText = newBodyText
+        updateBodyText()
+    }
+
+    fun setTextColor(@ColorInt newTextColor: Int) {
+        textColor = newTextColor
+        updateTextColor()
+    }
+
+    fun setBodyTextSize(newBodyTextSizePixels: Int) {
+        bodyTextSize = newBodyTextSizePixels
+        updateTextSize()
+        updateBodyText()
+    }
+
+    // ---------------------------------
+    // PRIVATE METHODS
+    // ---------------------------------
+
+
+    private fun initView(attrs: AttributeSet?) {
+        parseViewAttributes(attrs)
+
+        updateTextColor()
+        updateTextSize()
+
+        fontPath?.let {
+            val typeFace = Typeface.createFromAsset(context.assets, fontPath);
+            bodyTextView.typeface = typeFace
+            lettrineTextView.typeface = typeFace
+        }
+
+        updateBodyText()
+    }
+
+    private fun parseViewAttributes(attrs: AttributeSet?) {
+        attrs?.let {
+            val typedArray = context.theme.obtainStyledAttributes(
+                    it,
+                    R.styleable.LettrineTextView,
+                    0, 0);
+            lettrineLinesSizeEquivalent = typedArray.getInteger(R.styleable.LettrineTextView_lettrine_lettrineSize, LETTRINE_LINES_SIZE_EQUIVALENT)
+            bodyTextSize = typedArray.getDimensionPixelSize(R.styleable.LettrineTextView_lettrine_textSize, DEFAULT_TEXT_SIZE_SP)
+            fontPath = typedArray.getString(R.styleable.LettrineTextView_lettrine_font)
+            textColor = typedArray.getColor(R.styleable.LettrineTextView_lettrine_textColor, DEFAULT_TEXT_COLOR)
+            bodyText = typedArray.getString(R.styleable.LettrineTextView_lettrine_text) ?: ""
+        }
+    }
+
+    private fun updateTextColor() {
+        bodyTextView.textColor = textColor
+        lettrineTextView.textColor = textColor
+    }
+
+    private fun getTextViewWidth(textView: TextView): Int {
+        val bounds = Rect()
+        textView.paint.getTextBounds(textView.text.toString(), 0, textView.text.length, bounds)
+        return bounds.width() + textView.paddingRight + textView.paddingLeft
+    }
+
+    private fun updateTextSize() {
+        bodyTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, bodyTextSize.toFloat())
+        val lettrineTextSize = (bodyTextView.lineHeight + bodyTextView.lineHeight - bodyTextSize) * lettrineLinesSizeEquivalent
+        lettrineTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, lettrineTextSize.toFloat())
+
+        val lettrineSpacing = lettrineTextView.lineHeight - lettrineTextSize
+
+        lettrineTextView.setPadding(0, -lettrineSpacing, bodyTextSize.toInt(), 0)
+    }
+
+    private fun updateBodyText() {
+        if (bodyText != null && !TextUtils.isEmpty(bodyText)) {
+            val lettrineData = LettrineHelper.parseLettrineInformation(bodyText as String)
             val spanned = Html.fromHtml(lettrineData.remainingString)
             val spannableString = SpannableString(spanned)
 
@@ -92,52 +164,6 @@ class LettrineTextView : FrameLayout {
             lettrineTextView.visibility = View.GONE
             bodyTextView.visibility = View.GONE
         }
-    }
-
-    // ---------------------------------
-    // PRIVATE METHODS
-    // ---------------------------------
-
-
-    private fun initView(attrs: AttributeSet?) {
-        var bodyText: String = ""
-
-        attrs?.let {
-            val typedArray = context.theme.obtainStyledAttributes(
-                    it,
-                    R.styleable.LettrineTextView,
-                    0, 0);
-            lettrineLinesSizeEquivalent = typedArray.getInteger(R.styleable.LettrineTextView_lettrine_lettrineSize, LETTRINE_LINES_SIZE_EQUIVALENT)
-            bodyTextSize = typedArray.getDimensionPixelSize(R.styleable.LettrineTextView_lettrine_textSize, DEFAULT_TEXT_SIZE_SP)
-            fontPath = typedArray.getString(R.styleable.LettrineTextView_lettrine_font)
-            textColor = typedArray.getColor(R.styleable.LettrineTextView_lettrine_textColor, DEFAULT_TEXT_COLOR)
-            bodyText = typedArray.getString(R.styleable.LettrineTextView_lettrine_text) ?: ""
-        }
-
-        bodyTextView.textColor = textColor
-        lettrineTextView.textColor = textColor
-
-        bodyTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, bodyTextSize.toFloat())
-        val lettrineTextSize = (bodyTextView.lineHeight + bodyTextView.lineHeight - bodyTextSize) * lettrineLinesSizeEquivalent
-        lettrineTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, lettrineTextSize.toFloat())
-
-        val lettrineSpacing = lettrineTextView.lineHeight - lettrineTextSize
-
-        lettrineTextView.setPadding(0, -lettrineSpacing, bodyTextSize.toInt(), 0)
-
-        fontPath?.let {
-            val typeFace = Typeface.createFromAsset(context.assets, fontPath);
-            bodyTextView.typeface = typeFace
-            lettrineTextView.typeface = typeFace
-        }
-
-        setBodyText(bodyText)
-    }
-
-    private fun getTextViewWidth(textView: TextView): Int {
-        val bounds = Rect()
-        textView.paint.getTextBounds(textView.text.toString(), 0, textView.text.length, bounds)
-        return bounds.width() + textView.paddingRight + textView.paddingLeft
     }
 
     // ---------------------------------

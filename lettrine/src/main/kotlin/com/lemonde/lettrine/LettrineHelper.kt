@@ -26,53 +26,62 @@ internal object LettrineHelper {
      * * spanned text
      */
     fun parseLettrineInformation(spannedText: String): LettrineData {
-        var firstChar: Char? = null
-        var truncatedFirstBlock: String? = null
-        var blockToBeModified: String? = null
         val truncatedSpannedText: String
+        var parsed: ParsedTextBlock? = null
 
         try {
-            val factory = XmlPullParserFactory.newInstance()
-            factory.isNamespaceAware = true
-            val xpp = factory.newPullParser()
-            xpp.setInput(StringReader(spannedText))
+            val xpp = getXmlPullParser(spannedText)
             var eventType = xpp.eventType
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 // We look for the first text block
                 if (eventType == XmlPullParser.TEXT) {
                     // Only letter character must be "lettrinized"
-                    if (xpp.text != null
-                            && !(xpp.text as CharSequence).isEmpty()
-                            && Character.isLetter(xpp.text[0])) {
-                        firstChar = xpp.text[0].toUpperCase()
-                        truncatedFirstBlock = xpp.text.substring(1, xpp.text.length)
-                        blockToBeModified = xpp.text
+                    if (isTextBlockLettrinzable(xpp)) {
+                        val firstChar = xpp.text[0].toUpperCase()
+                        val truncatedFirstBlock = xpp.text.substring(1, xpp.text.length)
+                        val blockToBeModified = xpp.text
+                        parsed = ParsedTextBlock(firstChar, truncatedFirstBlock, blockToBeModified)
                     }
 
-                    // In any cases we lease the xml inspection
+                    // In any cases we leave the xml inspection
                     break
                 }
                 eventType = xpp.next()
             }
         } catch (e: XmlPullParserException) {
-            firstChar = spannedText[0].toUpperCase()
-            if (Character.isLetter(firstChar)) {
-                truncatedFirstBlock = spannedText.substring(1, spannedText.length)
-                blockToBeModified = spannedText
-            } else {
-                return LettrineData(null, spannedText)
-            }
+            parsed = getUnparsableModifiedTextBlock(spannedText)
         }
 
-        truncatedSpannedText = getTruncatedFirstBlock(blockToBeModified, spannedText, truncatedFirstBlock)
+        truncatedSpannedText = getTruncatedFirstBlock(parsed?.blockToBeModified, spannedText, parsed?.truncatedFirstBlock)
 
-        return LettrineData(firstChar, truncatedSpannedText)
+        return LettrineData(parsed?.firstChar, truncatedSpannedText)
     }
 
     // ----------------------------------
     // PRIVATE METHOD
     // ----------------------------------
+
+    private fun getXmlPullParser(spannedText: String): XmlPullParser {
+        val factory = XmlPullParserFactory.newInstance()
+        factory.isNamespaceAware = true
+        val xpp = factory.newPullParser()
+        xpp.setInput(StringReader(spannedText))
+        return xpp
+    }
+
+    private fun getUnparsableModifiedTextBlock(spannedText: String): ParsedTextBlock? {
+        var parsed: ParsedTextBlock?
+        val firstChar = spannedText[0].toUpperCase()
+        if (Character.isLetter(firstChar)) {
+            val truncatedFirstBlock = spannedText.substring(1, spannedText.length)
+            val blockToBeModified = spannedText
+            parsed = ParsedTextBlock(firstChar, truncatedFirstBlock, blockToBeModified)
+        } else {
+            parsed = null
+        }
+        return parsed
+    }
 
     private fun getTruncatedFirstBlock(blockToBeModified: String?, spannedText: String, truncatedFirstBlock: String?): String {
         var truncatedSpannedText: String
@@ -84,7 +93,19 @@ internal object LettrineHelper {
         }
         return truncatedSpannedText
     }
+
+    private fun isTextBlockLettrinzable(xpp: XmlPullParser): Boolean {
+        return (xpp.text != null
+                && !(xpp.text as CharSequence).isEmpty()
+                && Character.isLetter(xpp.text[0]))
+    }
+
 }
+
+/**
+ * Data class used to store intermediate parsing information
+ */
+private data class ParsedTextBlock(val firstChar: Char?, val truncatedFirstBlock: String, val blockToBeModified: String?)
 
 /**
  * Data class used to pass parsed data form LettrineHelper to the lettrineView
