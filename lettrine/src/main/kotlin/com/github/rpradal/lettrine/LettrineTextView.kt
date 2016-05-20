@@ -1,4 +1,4 @@
-package com.lemonde.lettrine
+package com.github.rpradal.lettrine
 
 import android.content.Context
 import android.graphics.*

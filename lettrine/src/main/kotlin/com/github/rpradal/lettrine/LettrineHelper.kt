@@ -1,4 +1,4 @@
-package com.lemonde.lettrine
+package com.github.rpradal.lettrine
 
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException

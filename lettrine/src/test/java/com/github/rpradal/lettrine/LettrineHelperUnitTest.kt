@@ -1,4 +1,4 @@
-package com.lemonde.lettrine
+package com.github.rpradal.lettrine
 
 import org.junit.Assert
 import org.junit.Test

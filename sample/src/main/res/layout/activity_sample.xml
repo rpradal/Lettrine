@@ -14,16 +14,16 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.lemonde.lettrine.sample.SampleActivity">
+        tools:context="com.github.rpradal.lettrine.sample.SampleActivity">
 
-        <com.lemonde.lettrine.LettrineTextView
+        <com.github.rpradal.lettrine.LettrineTextView
             android:id="@+id/simpleTwoLettrineTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:lettrine_lettrineSize="2"
             app:lettrine_textSize="@dimen/text_size_big" />
 
-        <com.lemonde.lettrine.LettrineTextView
+        <com.github.rpradal.lettrine.LettrineTextView
             android:id="@+id/simpleThreeLettrineTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             app:lettrine_lettrineSize="3"
             app:lettrine_textSize="@dimen/text_size_medium" />
 
-        <com.lemonde.lettrine.LettrineTextView
+        <com.github.rpradal.lettrine.LettrineTextView
             android:id="@+id/fontLettrineTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,14 +39,14 @@
             app:lettrine_font="font/otf/Cinzel-Regular.otf"
             app:lettrine_textSize="@dimen/text_size_small" />
 
-        <com.lemonde.lettrine.LettrineTextView
+        <com.github.rpradal.lettrine.LettrineTextView
             android:id="@+id/htmlLettrineTextView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:lettrine_textSize="@dimen/text_size_medium" />
 
-        <com.lemonde.lettrine.LettrineTextView
+        <com.github.rpradal.lettrine.LettrineTextView
             android:id="@+id/inlineLettrineTextView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             app:lettrine_text="@string/lorem_ipsum"
             app:lettrine_textSize="14sp" />
 
-        <com.lemonde.lettrine.LettrineTextView
+        <com.github.rpradal.lettrine.LettrineTextView
             android:id="@+id/coloredLettrineTextView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

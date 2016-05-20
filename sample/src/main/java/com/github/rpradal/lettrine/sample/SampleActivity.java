@@ -1,9 +1,9 @@
-package com.lemonde.lettrine.sample;
+package com.github.rpradal.lettrine.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.lemonde.lettrine.LettrineTextView;
+import com.github.rpradal.lettrine.LettrineTextView;
 
 /**
  * Lettrine sample activity
