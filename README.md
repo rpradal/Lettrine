@@ -16,6 +16,12 @@ Lettrine is a library that let you display TextView with an [intial](https://en.
 
 ## Configuration
 
+Add the following line in your gradle _dependencies_ block.
+
+      `compile 'com.github.rpradal.lettrine:lettrine:release_number'`
+
+ _release_number_ has to be replaced with the current lettrine version which can be found in the github interface.
+
 ## License
 
       Copyright 2016 Le Monde.fr 
