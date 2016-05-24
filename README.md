@@ -24,6 +24,16 @@ Add the following line in your gradle _dependencies_ block.
 
 ## License
 
+Project developed with [LeMonde.fr](http://www.lemonde.fr/) and [Octo Technology](http://www.octo.com) support.
+
+  
+ 
+| <img style="float: center;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Lemonde_fr_2005_logo.svg/800px-Lemonde_fr_2005_logo.svg.png" width="400">  | <img style="float: right;" src="http://directory.facci.com.au/image/company_logo/full_2495.png" width="400">  |
+|-------:|:------:|
+
+
+
+
       Copyright 2016 Le Monde.fr 
 
       Licensed under the Apache License, Version 2.0 (the "License");
