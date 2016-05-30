@@ -2,8 +2,6 @@
 
 Lettrine is a library that let you display TextView with an [intial](https://en.wikipedia.org/wiki/Initial) first letter. 
 
-## Examples
-
 ## Features
 
 * Select how many lines your initial should use
@@ -11,6 +9,13 @@ Lettrine is a library that let you display TextView with an [intial](https://en.
 * Change the text size
 * Change the text color
 * Display Spanned text
+
+## Examples
+
+The following screenshots illustrate the library capabilities listed above :
+
+| <img style="float: center;" src="http://i.imgur.com/ivgH1gZ.jpg" width="400">  | <img style="float: right;" src="http://i.imgur.com/hHVzvXR.jpg" width="400">  | <img style="float: right;" src="http://i.imgur.com/6RL4AeR.jpg" width="400">  | <img style="float: right;" src="http://i.imgur.com/3MsIm3t.jpg" width="400">  | <img style="float: right;" src="http://i.imgur.com/VuaW6pA.jpg" width="400">  |
+|-------:|:------:|:------:|:------:|:------:|
 
 ## Including in your project
 
