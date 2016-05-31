@@ -27,7 +27,7 @@ Here is an example of how you can a LettrineTextView in your project :
                   android:layout_height="wrap_content"
                   app:lettrine_textColor="@android:color/holo_red_dark"
                   app:lettrine_text="Lorem ipsum"
-                  app:lettrine_lettrineSize="Lorem ipsum"
+                  app:lettrine_lettrineSize="3"
                   app:lettrine_textSize="14sp" />
                   
 The exhaustive attribute list of a LettrineTextView is the following :
