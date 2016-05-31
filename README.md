@@ -15,9 +15,30 @@ Lettrine is a library that let you display TextView with an [intial](https://en.
 The following screenshots illustrate the library capabilities listed above :
 
 | <img style="float: center;" src="http://i.imgur.com/ivgH1gZ.jpg" width="400">  | <img style="float: right;" src="http://i.imgur.com/hHVzvXR.jpg" width="400">  | <img style="float: right;" src="http://i.imgur.com/6RL4AeR.jpg" width="400">  | <img style="float: right;" src="http://i.imgur.com/3MsIm3t.jpg" width="400">  | <img style="float: right;" src="http://i.imgur.com/VuaW6pA.jpg" width="400">  |
-|-------:|:------:|:------:|:------:|:------:|
+|:-------:|:------:|:------:|:------:|:------:|
+| Lettrine with a thre lines height | Lettrine with a thre lines height | Font customization | Html balisis inclusion | Custom text color |
 
 ## Including in your project
+
+Here is an example of how you can a LettrineTextView in your project :
+
+      <com.github.rpradal.lettrine.LettrineTextView
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  app:lettrine_textColor="@android:color/holo_red_dark"
+                  app:lettrine_text="Lorem ipsum"
+                  app:lettrine_lettrineSize="Lorem ipsum"
+                  app:lettrine_textSize="14sp" />
+                  
+The exhaustive attribute list of a LettrineTextView is the following :
+
+* _lettrine_textSize_  Body text size
+* _lettrine_lettrineSize_ Number of body lines the lettrine will take
+* _lettrine_font_ The font to use (applied to both lettrine letter and body text)
+* _lettrine_textColor_ Text color (applied to both lettrine letter and body text)
+* _lettrine_text_ Text to display in the LettrineTextView
+
+Of course all these attributes are settable programatically thanks to public methods.
 
 ## Configuration
 
