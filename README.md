@@ -1,6 +1,6 @@
 # Lettrine
 
-Lettrine is a library that let you display TextView with an [intial](https://en.wikipedia.org/wiki/Initial) first letter. 
+Lettrine is a library that let you display TextView with an [initial](https://en.wikipedia.org/wiki/Initial) first letter. 
 
 ## Features
 
@@ -16,7 +16,7 @@ The following screenshots illustrate the library capabilities listed above :
 
 | <img style="float: center;" src="http://i.imgur.com/ivgH1gZ.jpg" width="400">  | <img style="float: right;" src="http://i.imgur.com/hHVzvXR.jpg" width="400">  | <img style="float: right;" src="http://i.imgur.com/6RL4AeR.jpg" width="400">  | <img style="float: right;" src="http://i.imgur.com/3MsIm3t.jpg" width="400">  | <img style="float: right;" src="http://i.imgur.com/VuaW6pA.jpg" width="400">  |
 |:-------:|:------:|:------:|:------:|:------:|
-| Lettrine with a thre lines height | Lettrine with a thre lines height | Font customization | Html balisis inclusion | Custom text color |
+| Lettrine with a three lines height | Lettrine with a two lines height | Font customization | Html balisis inclusion | Custom text color |
 
 ## Including in your project
 
@@ -46,7 +46,8 @@ Add the following line in your gradle _dependencies_ block.
 
       compile 'com.github.rpradal.lettrine:lettrine:release_number'
 
- _release_number_ has to be replaced with the current lettrine version which can be found in the github interface.
+ _release_number_ has to be replaced with the current lettrine version: <img src="https://maven-badges.herokuapp.com/maven-central/com.github.rpradal.lettrine/lettrine/badge.svg"</img>
+
 
 ## License
 
